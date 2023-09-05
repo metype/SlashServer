@@ -9,6 +9,7 @@ import net.md_5.bungee.api.scheduler.ScheduledTask;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class SlashServer extends Plugin {
@@ -22,6 +23,14 @@ public class SlashServer extends Plugin {
     public static String ALREADY_TELEPORTING;
 
 	public void onEnable() {
+        try {
+            Class<?> c = Class.forName("org.yaml.snakeyaml.representer.Representer");
+            System.out.println("Methods of Representer: "
+                    + Arrays.toString(
+                    c.getConstructors()));
+        } catch(ClassNotFoundException e) {
+            System.out.println(e.getException().toString());
+        }
         INSTANCE = this;
 		proxy = ProxyServer.getInstance();
 		registerCommands();
